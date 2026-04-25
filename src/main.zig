@@ -20,11 +20,10 @@ const VGA = enum(u8) {
 };
 const where = 0xB8000;
 
-pub export fn _start() noreturn {
+pub fn main() void {
     print();
-    while (true) {}
 }
-pub fn main() !void {}
+
 const color = u8;
 
 pub fn color_code(foreground: VGA, background: VGA) u8 {
@@ -71,7 +70,7 @@ pub fn write_byte(writer: *Writer, byte: u8) !void {
 }
 pub fn write_string(writer: *Writer, s: []const u8) void {
     for (s) |byte| {
-       try switch (byte) {
+        try switch (byte) {
             0x20...0x7e, '\n' => write_byte(writer, byte),
             else => write_byte(writer, 0xfe),
         };

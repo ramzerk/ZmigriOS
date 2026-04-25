@@ -1,4 +1,4 @@
-all: compile 
+all: compile iso mac qemu 
 
 compile :
 	zig build -Dcpu=i386 -Dtarget=x86-freestanding
@@ -13,7 +13,7 @@ mac:
 	docker run --rm \
 	-v "$$(pwd):/work" \
 	-w /work \
-	ubuntu:22.04 \
+	 \
 	bash -c "apt update && apt install -y grub-pc-bin grub-common xorriso && grub-file --is-x86-multiboot ZimgriOS ;grub-mkrescue -o ZmigriOS.iso iso "
 
 qemu: 
