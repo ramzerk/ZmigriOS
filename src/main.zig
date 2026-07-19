@@ -1,5 +1,7 @@
 const builtin = @import("builtin");
-
+comptime {
+    _ = @import("multiboot.zig");
+}
 const VGA = enum(u8) {
     Black = 0,
     Blue = 1,
@@ -20,7 +22,7 @@ const VGA = enum(u8) {
 };
 const where = 0xB8000;
 
-pub fn main() void {
+export fn main() void {
     print();
 }
 
